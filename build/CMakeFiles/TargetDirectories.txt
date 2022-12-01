@@ -1,0 +1,3 @@
+/home/gor/q_project/build/CMakeFiles/qTest.dir
+/home/gor/q_project/build/CMakeFiles/edit_cache.dir
+/home/gor/q_project/build/CMakeFiles/rebuild_cache.dir
