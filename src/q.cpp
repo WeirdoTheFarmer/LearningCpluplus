@@ -20,8 +20,8 @@ class Polygon {
 
 
 class Rectangle: public Polygon {
-    int default_x; 
-    int default_y;
+    int default_x = 64; 
+    int default_y = 16;
     string default_frame;
   protected:
     string frame;
@@ -29,61 +29,59 @@ class Rectangle: public Polygon {
     Rectangle ();
 	int area()
           {return width*height;}
-	void spaceFrame ();
- 	void printFrame ();
+	string get_frame ();
+ 	void printFrame (const string&);
 };
 
 Rectangle::Rectangle()
 {
-    default_x = 64;
-    default_y = 16;
     for (int i=0;i<default_y;i++){
         for (int j=0;j<default_x;j++){
             if ((i ==0 || i==(default_y-1)) &&
 			   (j==0 || j==(default_x-1))) 
-			  { std::cout << "+"; default_frame +="+";}
+			  { default_frame +="+";}
 			
 			else if (i ==0 || i==(default_y-1) && j!=0) 
-                { std::cout << "-"; default_frame +="-";}
+                { default_frame +="-";}
 
 			else if ((i != 0 || i!=(default_y-1)) &&
 					 (j == 0 || j == (default_x-1)))
-			    {std::cout << "|"; default_frame+= "|";}
-			else {std::cout << " ";default_frame+= " ";}
+			    {default_frame+= "|";}
+			else {default_frame+= " ";}
     
         }
-        default_frame+= "\0";
-        std::cout<<'\n';
+        default_frame+= "\n";
     } 
-
 }
 
-void Rectangle::spaceFrame()
+string Rectangle::get_frame()
 {
 
-	std::string str[width][height];
 	for ( int i=0;i<width;i++){
 		for ( int j=0;j<height;j++) {
 			if ((i ==0 || i==(width-1)) &&
 			   (j==0 || j==(height-1))) 
-			  { std::cout << "+"; str[i][j] ="+";}
+			  { frame +="+";}
 			
 			else if (i ==0 || i==(width-1) && j!=0) 
-                { std::cout << "-"; str[i][j] ="-";}
+                { frame+="--";}
 
 			else if ((i != 0 || i!=(width-1)) &&
 					 (j == 0 || j == (height-1)))
-			    {std::cout << "|"; str[i][j]= "|";}
-			else {std::cout << " "; str[i][j]= " ";}			
+			    {frame+= "|";}
+			else {frame+= "  ";}			
 			
 		}
-		std::cout << '\n';
+		frame+= "\n";
     }
+	return frame;
 }
 
-void Rectangle::printFrame ()
+void Rectangle::printFrame (const string& str)
 {
-	spaceFrame();
+	for (const char c : str){
+		std::cout << c;
+	}	
 }
 
 
@@ -97,8 +95,8 @@ class Triangle: public Polygon {
 int main () {
 	
 	Rectangle rtg;
-	rtg.set_value(15, 20);
-//	rtg.printFrame();
+	rtg.set_value(25, 25);
+	rtg.printFrame(rtg.get_frame());
 
 	
 	return 0;
